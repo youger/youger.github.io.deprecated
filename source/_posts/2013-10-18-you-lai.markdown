@@ -1,0 +1,10 @@
+---
+layout: post
+title: "由来"
+date: 2013-10-18 14:06
+comments: true
+categories: 
+---
+   拖了这么久今天终于把博客搭建起来了，以后暂且在这儿安家了。
+
+参考：[利用Octopress搭建一个Github博客——破船之家](http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/)
