@@ -4,7 +4,7 @@
   <title><![CDATA[iYouger]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-05-20T14:20:41+08:00</updated>
+  <updated>2014-06-11T10:22:55+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -31,7 +31,7 @@
   <li>搭建自己到服务器，返回需要的json或者xml</li>
 </ol>
 
-<p>最终选择Apache＋PHP＋MySQL。本以为可以傻瓜式直接装<a href="http://www.mamp.info/en/">MAMP</a>，结果安装到最后一步总是失败，试了各种方法<a href="(http://forum.mamp.info/viewtopic.php?f=2&amp;t=86116&amp;p=104773&amp;hilit=mavericks#p104773)">🔗</a>,<a href="(http://www.gladdy.co.uk/blog/2013/06/16/mamp-pro-under-os-x-mavericks/)">🔗</a>也没有解决问题，无意间看到这片<a href="(http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/)">博文</a>,简略记录一下。</p>
+<p>最终选择Apache＋PHP＋MySQL。本以为可以傻瓜式直接装<a href="http://www.mamp.info/en/">MAMP</a>，结果安装到最后一步总是失败，试了各种方法<a href="http://forum.mamp.info/viewtopic.php?f=2&amp;t=86116&amp;p=104773&amp;hilit=mavericks#p104773">🔗</a>,<a href="http://www.gladdy.co.uk/blog/2013/06/16/mamp-pro-under-os-x-mavericks/">🔗</a>也没有解决问题，无意间看到这片<a href="http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/">博文</a>,简略记录一下。</p>
 
 <p>本文教程适用于第一次在Mac OS X Mavericks上安装Apache, PHP, and MySQL，或者从已经存在的版本更新到Mavericks。</p>
 
