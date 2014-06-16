@@ -4,7 +4,7 @@
   <title><![CDATA[iYouger]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-06-11T13:41:59+08:00</updated>
+  <updated>2014-06-16T10:30:01+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -200,7 +200,11 @@
     <link href="http://youger.github.io/blog/2013/11/11/iosying-yong-beng-kui-ri-zhi-jie-mi/"/>
     <updated>2013-11-11T10:49:00+08:00</updated>
     <id>http://youger.github.io/blog/2013/11/11/iosying-yong-beng-kui-ri-zhi-jie-mi</id>
-    <content type="html"><![CDATA[<p>自己模拟器和真机上测试都没有问题，但store上用户评论存在闪退问题，于是通过这篇<a href="http://blog.devtang.com/blog/2013/07/24/use-crashlytics/">博文</a>更新了一个版本，新加入<a href="http://try.crashlytics.com">crashlytics</a>工具收集用户的crash log，但是等待审核迟迟不能通过，于是就打算自己手动去分析下已有的崩溃日志报告，打开这些<code>.crash</code>文件，对于一个菜鸟来说这报告看起来像天书，于是Google了一下，结果第一条就找到入手点，参考<a href="http://www.raywenderlich.com/zh-hans/30818/ios应用崩溃日志揭秘">iOS应用崩溃日志揭秘</a>，一步一步按着教程来，了解崩溃日志的内容。</p>
+    <content type="html"><![CDATA[<p>最近收到用户反馈说新版本词典存在闪退问题，和PM各种测试也没发现闪退，苹果后台也确实收集到一些crash的报告，借此机会打算手动去分析下已有的崩溃日志报告，打开这些<code>.crash</code>文
+件，满篇天书，Google了一下还是找到有不少关于分析崩溃报告的教程，参考RW<a href="http://www.raywenderlich.com/zh-hans/30818/ios应用崩溃日志揭秘">iOS应用崩溃日志揭秘</a>，
+教程。
+后来通过这篇<a href="http://blog.devtang.com/blog/2013/07/24/use-crashlytics/">博文</a>了解到<a href="http://try.crashlytics.com">crashlytics</a>,在线收集用
+户的crash log的工具。</p>
 ]]></content>
   </entry>
   
@@ -209,9 +213,9 @@
     <link href="http://youger.github.io/blog/2013/10/18/you-lai/"/>
     <updated>2013-10-18T14:06:00+08:00</updated>
     <id>http://youger.github.io/blog/2013/10/18/you-lai</id>
-    <content type="html"><![CDATA[<p>拖了这么久今天终于把博客搭建起来了，以后暂且在这儿安家了。</p>
+    <content type="html"><![CDATA[<p>Fser。</p>
 
-<p>参考：<a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">利用Octopress搭建一个Github博客——破船之家</a></p>
+<p><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">参考</a></p>
 ]]></content>
   </entry>
   
