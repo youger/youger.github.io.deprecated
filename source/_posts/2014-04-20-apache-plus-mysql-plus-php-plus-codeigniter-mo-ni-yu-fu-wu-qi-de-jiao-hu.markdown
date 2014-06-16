@@ -1,10 +1,13 @@
 ---
-layout: post
-title: "Apache+MySQL+PHP +codeigniter 模拟与服务器的交互"
-date: 2014-04-20 02:20
-comments: true
+layout: post  
+title: "Apache+MySQL+PHP +codeigniter 模拟与服务器的交互"  
+date: 2014-04-20 02:20  
+comments: true  
+thumbnail: /img/avatar.jpg  
+description: "最近接手一个项目，看demo算不上复杂，基本功能就是从服务器获取数据然后展示出来......"
 categories: 
----
+---  
+
 ##为什么
 
 最近接手一个项目，看demo算不上复杂，基本功能就是从服务器获取数据然后展示出来。以前做过类似的app，当时由于初次做这类前端和后端一块开发的项目，后端的进度直接影响了前端开发，导致留给我们这边开发和测试的时间都很紧，bug也肯定是层出不穷，最后勉强上线。
@@ -18,7 +21,7 @@ categories:
 
 最终选择Apache＋PHP＋MySQL。本以为可以傻瓜式直接装[MAMP](http://www.mamp.info/en/)，结果安装到最后一步总是失败，试了各种方法[🔗][issue],[🔗][resolve]也没有解决问题，无意间看到这片[博文][blog],简略记录一下。
 
-本文教程适用于第一次在Mac OS X Mavericks上安装Apache, PHP, and MySQL，或者从已经存在的版本更新到Mavericks。
+本文教程适用于第一次在Mac OS X Mavericks上安装Apache, PHP, 和 MySQL，或者从已经存在的版本更新到Mavericks。
 
 因为Mac OS X 运行在 UNIX上，所以安装这些就相对容易很多，除此之外，系统缺省又包含了 Apache 和 PHP ，只需安装MySQL，然后简单使他们都处于开启状态。
 
@@ -37,8 +40,8 @@ apachectl start
 
 ##### 打开PHP
 
-[issue]: (http://forum.mamp.info/viewtopic.php?f=2&t=86116&p=104773&hilit=mavericks#p104773)
+[issue]: http://forum.mamp.info/viewtopic.php?f=2&t=86116&p=104773&hilit=mavericks#p104773
 
-[resolve]:(http://www.gladdy.co.uk/blog/2013/06/16/mamp-pro-under-os-x-mavericks/)
+[resolve]:http://www.gladdy.co.uk/blog/2013/06/16/mamp-pro-under-os-x-mavericks/
 
-[blog]: (http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/)
+[blog]: http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/
