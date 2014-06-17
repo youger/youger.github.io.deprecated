@@ -4,7 +4,7 @@
   <title><![CDATA[Fser]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-06-16T17:45:21+08:00</updated>
+  <updated>2014-06-17T11:47:26+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -14,11 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Apache+MySQL+PHP +codeigniter 模拟与服务器的交互]]></title>
+    <title type="html"><![CDATA[模拟与服务器的交互]]></title>
     <link href="http://youger.github.io/blog/2014/04/20/apache-plus-mysql-plus-php-plus-codeigniter-mo-ni-yu-fu-wu-qi-de-jiao-hu/"/>
     <updated>2014-04-20T02:20:00+08:00</updated>
     <id>http://youger.github.io/blog/2014/04/20/apache-plus-mysql-plus-php-plus-codeigniter-mo-ni-yu-fu-wu-qi-de-jiao-hu</id>
-    <content type="html"><![CDATA[<h2 id="section">为什么</h2>
+    <content type="html"><![CDATA[<h1 id="apachemysqlphpcodeigniter">利用Apache/MySQL/PHP/codeigniter搭建虚拟环境</h1>
+
+<h2 id="section">为什么</h2>
 
 <p>最近接手一个项目，看demo算不上复杂，基本功能就是从服务器获取数据然后展示出来。以前做过类似的app，当时由于初次做这类前端和后端一块开发的项目，后端的进度直接影响了前端开发，导致留给我们这边开发和测试的时间都很紧，bug也肯定是层出不穷，最后勉强上线。</p>
 
