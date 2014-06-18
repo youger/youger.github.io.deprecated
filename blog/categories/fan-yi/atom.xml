@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 翻译 | Fser]]></title>
   <link href="http://youger.github.io/blog/categories/fan-yi/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-06-17T11:47:26+08:00</updated>
+  <updated>2014-06-18T11:36:10+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -54,7 +54,7 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma mark Pragma &lt;/p&gt;</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma mark Pragma&lt;/p&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
 </span><span class='line'>  <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
@@ -161,7 +161,6 @@
 <p>现在你不用在考虑筹划索引路径(index path)在数组中的位置，每次你想要在表视图中展示一个数组的内容你都可以重用这部分代码。你还可以额外实现像<code>tableView:commitEditingStyle:forRowAtIndexPath: </code>这样的方法，在你的ViewController中共用这些代码。</p>
 
 <p>美妙的是你可以单独的测试这个类而不用考虑重新在写。假如数据不是数组这个方法同样适用。</p>
-
 ]]></content>
   </entry>
   

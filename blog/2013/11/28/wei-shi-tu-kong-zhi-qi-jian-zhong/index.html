@@ -8,7 +8,7 @@
 
   
   <meta name="description" content="在iOS项目中ViewController经常是最大的文件，而且还包含了很多不必须的代码......"/>
-  
+  <meta name="keywords" content="iOS, refactor, reuse, 重构, 复用"/>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -134,7 +134,7 @@
 <span class="line-number">17</span>
 <span class="line-number">18</span>
 <span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="cp">#pragma mark Pragma </span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="cp">#pragma mark Pragma</span>
 </span><span class="line">
 </span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="n">Photo</span><span class="o">*</span><span class="p">)</span><span class="nf">photoAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
 </span><span class="line">    <span class="k">return</span> <span class="n">photos</span><span class="p">[(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">];</span>
@@ -223,7 +223,6 @@
 <p>现在你不用在考虑筹划索引路径(index path)在数组中的位置，每次你想要在表视图中展示一个数组的内容你都可以重用这部分代码。你还可以额外实现像<code>tableView:commitEditingStyle:forRowAtIndexPath: </code>这样的方法，在你的ViewController中共用这些代码。</p>
 
 <p>美妙的是你可以单独的测试这个类而不用考虑重新在写。假如数据不是数组这个方法同样适用。</p>
-
 </div>
 
 
