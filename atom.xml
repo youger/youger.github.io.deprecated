@@ -4,7 +4,7 @@
   <title><![CDATA[Fser]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-06-19T12:50:23+08:00</updated>
+  <updated>2014-06-20T18:21:47+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ReactiveCocoa学习1]]></title>
+    <link href="http://youger.github.io/blog/2014/06/20/reactivecocoaxue-xi-1/"/>
+    <updated>2014-06-20T10:06:21+08:00</updated>
+    <id>http://youger.github.io/blog/2014/06/20/reactivecocoaxue-xi-1</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[模拟与服务器的交互]]></title>
