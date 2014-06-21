@@ -4,7 +4,7 @@
   <title><![CDATA[Fser]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-06-20T18:21:47+08:00</updated>
+  <updated>2014-06-21T16:24:56+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -12,6 +12,164 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[为Octopress添加Category]]></title>
+    <link href="http://youger.github.io/blog/2014/06/20/octopress-tian-jia-zhong-wen-category/"/>
+    <updated>2014-06-20T18:29:46+08:00</updated>
+    <id>http://youger.github.io/blog/2014/06/20/octopress-tian-jia-zhong-wen-category</id>
+    <content type="html"><![CDATA[<p>导航栏添加自定义category列表</p>
+
+<p>前两天参考别人在侧边栏加category列表的方法给自己的博客添加了category导航。</p>
+
+<h2>基本步骤</h2>
+
+<p><span class="label label-important">首先</span><span class=" hidden">:</span>在<code>plugins/</code>路径下添加<code>category_list_tag.rb</code>文件</p>
+
+<figure class='code'><figcaption><span> (category_list_tag.rb)</span> <a href='http://youger.github.io/downloads/code/category_list_tag.rb'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">module</span>  <span class="nn">Jekyll</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Tag</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
+</span><span class='line'>      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
+</span><span class='line'>        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">html</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="ss">Jekyll</span><span class="p">:</span><span class="ss">:CategoryListTag</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p><span class="label label-info">其次</span><span class=" hidden">：</span>jekyll的插件<code>category_generator.rb</code>默认在创建categories目录时是不存在<code>index.html</code>索引文件的，因为她无法知道你每次创建category的路径地址，所以我们只能手动在<code>source/blog/categories/</code>路径下创建<code>index.html</code>文件</p>
+
+<figure class='code'><figcaption><span>index.html</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>---
+</span><span class='line'>layout: page
+</span><span class='line'>title: Categories
+</span><span class='line'>footer: false
+</span><span class='line'>
+</span><span class='line'>---
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    ｛％ category_list ％｝<span class="c">&lt;!--此处是中文输入，不要直接复制--&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><span class=" label label-success">最后</span><span class=" hidden">：</span>在<code>source/_includes/custom/navigation.html</code>中加如下代码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/categories&quot;</span><span class="nt">&gt;</span>Categories<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在就可以为博客归一下类了</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>---
+</span><span class='line'>layout: post
+</span><span class='line'>title: &quot;为Octopress添加Category&quot;
+</span><span class='line'>date: 2014-06-20 18:29:46 +0800
+</span><span class='line'>comments: true
+</span><span class='line'>categories: octopress
+</span><span class='line'>---
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h2></h2>
+
+<p><span class="label label-warning">Build Failed</span>关于第一次<code>rake generate</code> 遇到的
+<code>Liquid Exception: incompatible encoding regexp match (ASCII-8BIT regexp with UTF-8 string) in index.html</code>问题，原因是正则字符串以<code>ASCII-8BIT</code>被编译，只需在<code>category_list_tag.rb</code>文件头部加上如下声明，当Ruby在语法分析时，你代码中每一个字符(包括正则，字符串等等)都会被设定为<code>UTF-8</code>编码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># encoding: utf-8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考:<br/>
+<a href="http://wangzz.github.io/blog/2014/04/28/custom-your-octopress-blog/">链接1</a> , <a href="http://codemacro.com/tags/octopress/">链接2</a> , <a href="http://stackoverflow.com/questions/9857443/ruby-regex-error-incompatible-encoding-regexp-match-ascii-8bit-regexp-with-utf">链接3</a></p>
+
+<h2></h2>
+
+<h1>关于中文category</h1>
+
+<p>上面的流程走完之后，于是顺手给一篇文章加了个中文名称的分类，WTF，文件路径都正确就是，索引文件也有，就是找不到。仔细观察url发现category的url没有被读取为<code>字符串</code>－<code>字符串</code>而是直接以实际的形式(即中文编码后的格式)链接过去，但实际public/blog/categories/下各个子分类都是以<code>字符串</code>－<code>字符串</code>的命名存储的，这也就是为什么找不到目录下的索引文件。知道原因，这样问题就好办了。首先我选择了最笨的办法就是找到那篇博文的<a href="http://weibo.com/foogry/profile?s=6cm7D0">主人</a>直接问人家，然后就没有然后了&hellip;&hellip;</p>
+
+<p>好吧只能靠自己了，url读取问题应该是出在正则表达式上，打开<code>category_list_tag.rb</code>文件，也找到正则这句</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好吧，大致没看懂，但它确实是把category的名字完全匹配到了，这里是不是有个汉字转拼音的插件就可以解决问题呢？Google一下你就知道了。还真有<a href="https://github.com/janx/ruby-pinyin">ruby-pinyin</a>，看起来好复杂。再看看还有别的筏子吗，打开<code>plugins/category_generator.rb</code>文件，看看它到底是肿么把汉字转成<code>字符串</code>－<code>字符串</code>格式的路径的，看到这句时眼前突现了日出东山的万丈光芒：</p>
+
+<figure class='code'><figcaption><span>start:111 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>self.write_category_index(File.join(dir, category.to_url), category)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看样子<code>category.to_url</code>应该就是干这个活儿的，那么用它把<code>category_list_tag.rb</code>中的正则替换掉应该是能行，下面是修改后的样子：</p>
+
+<figure class='code'><figcaption><span>category_list_tag.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1">#category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase)  </span>
+</span><span class='line'><span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">to_url</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>新问题：codeblock没法使用<code>start:#</code> <code>mark:#,#-#</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ReactiveCocoa学习1]]></title>
@@ -27,20 +185,21 @@
     <link href="http://youger.github.io/blog/2014/04/20/apache-plus-mysql-plus-php-plus-codeigniter-mo-ni-yu-fu-wu-qi-de-jiao-hu/"/>
     <updated>2014-04-20T02:20:00+08:00</updated>
     <id>http://youger.github.io/blog/2014/04/20/apache-plus-mysql-plus-php-plus-codeigniter-mo-ni-yu-fu-wu-qi-de-jiao-hu</id>
-    <content type="html"><![CDATA[<h1 id="apachemysqlphpcodeigniter">利用Apache/MySQL/PHP/codeigniter搭建虚拟环境</h1>
+    <content type="html"><![CDATA[<h1>利用Apache/MySQL/PHP/codeigniter搭建虚拟环境</h1>
 
-<h2 id="section">为什么</h2>
+<h2>为什么</h2>
 
 <p>最近接手一个项目，看demo算不上复杂，基本功能就是从服务器获取数据然后展示出来。以前做过类似的app，当时由于初次做这类前端和后端一块开发的项目，后端的进度直接影响了前端开发，导致留给我们这边开发和测试的时间都很紧，bug也肯定是层出不穷，最后勉强上线。</p>
 
-<h2 id="section-1">怎么做</h2>
+<h2>怎么做</h2>
 
 <p>这次为了避免上次出现的窘况，决定前端后端一块搞。这里的意思并不是自己开发一个后台，首先对于菜鸟来说不现实，其次这时间也不允我这么搞。这里只是搭建个能返回测试数据的服务器。首先和后端的定好数据格式以及所需的接口，然后就是解决怎么模拟与服务器的交互问题。一通google，大致有两种方案：</p>
 
 <ol>
-  <li>利用测试框架写测试用例</li>
-  <li>搭建自己到服务器，返回需要的json或者xml</li>
+<li>利用测试框架写测试用例</li>
+<li>搭建自己到服务器，返回需要的json或者xml</li>
 </ol>
+
 
 <p>最终选择Apache＋PHP＋MySQL。本以为可以傻瓜式直接装<a href="http://www.mamp.info/en/">MAMP</a>，结果安装到最后一步总是失败，试了各种方法<a href="http://forum.mamp.info/viewtopic.php?f=2&amp;t=86116&amp;p=104773&amp;hilit=mavericks#p104773">🔗</a>,<a href="http://www.gladdy.co.uk/blog/2013/06/16/mamp-pro-under-os-x-mavericks/">🔗</a>也没有解决问题，无意间看到这片<a href="http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/">博文</a>,简略记录一下。</p>
 
@@ -50,18 +209,19 @@
 
 <p>首先在终端中切换到<code>root</code>，避免因为权限问题使以下命令不能正常运行</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">sudo su -</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo su -</span></code></pre></td></tr></table></div></figure>
 
-<h5 id="apache">启动Apache</h5>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">apachectl start</span></code></pre></td></tr></table></div></figure></notextile></div>
+<h5>启动Apache</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apachectl start</span></code></pre></td></tr></table></div></figure>
+
 
 <p>打开<a href="http://localhost">http://localhost</a>测试 It works!</p>
 
-<h5 id="php">打开PHP</h5>
-
+<h5>打开PHP</h5>
 ]]></content>
   </entry>
   
@@ -76,119 +236,122 @@
 
 <p>在iOS项目中ViewController经常是最大的文件，而且还包含了很多不必须的代码。不仅如此，在整个项目中ViewController还常常是代码复用最少的部分。接下来我们学习一下为ViewController减重的技巧，提高代码的可重用性，把代码放置更恰当的位置。</p>
 
-<h2 id="data-sourceprotocols">分离数据源(Data Source)和其他协议(Protocols)</h2>
+<h2>分离数据源(Data Source)和其他协议(Protocols)</h2>
 
 <p>把UITableViewDataSource部分从你的代码中挪到它自己的类里。假如你不止一次的这样做，你将开始接触设计模式和为此创建可复用的类。</p>
 
 <p>例如，在我们的<a href="https://github.com/objcio/issue-1-lighter-view-controllers">例子</a>中PhotosViewController类有下面的方法：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>title:PotosViewController.m </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="cp">#pragma mark Pragma</span>
-</span><span class="line">
-</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="n">Photo</span><span class="o">*</span><span class="p">)</span><span class="nf">photoAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">photos</span><span class="p">[(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">];</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
-</span><span class="line"> <span class="nf">numberOfRowsInSection:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">section</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">photos</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="n">UITableViewCell</span><span class="o">*</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
-</span><span class="line">        <span class="nf">cellForRowAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
-</span><span class="line">    <span class="n">PhotoCell</span><span class="o">*</span> <span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">PhotoCellIdentifier</span>
-</span><span class="line">                                                      <span class="nl">forIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
-</span><span class="line">    <span class="n">Photo</span><span class="o">*</span> <span class="n">photo</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nl">photoAtIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
-</span><span class="line">    <span class="n">cell</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">photo</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><figcaption><span>title:PotosViewController.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#pragma mark Pragma</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">Photo</span><span class="o">*</span><span class="p">)</span><span class="nf">photoAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">photos</span><span class="p">[(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
+</span><span class='line'> <span class="nf">numberOfRowsInSection:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">section</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">photos</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">UITableViewCell</span><span class="o">*</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
+</span><span class='line'>        <span class="nf">cellForRowAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">PhotoCell</span><span class="o">*</span> <span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">PhotoCellIdentifier</span>
+</span><span class='line'>                                                      <span class="nl">forIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">Photo</span><span class="o">*</span> <span class="n">photo</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nl">photoAtIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">cell</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">photo</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>这些代码中许多都和数组有关，其中一些提供ViewController管理的照片。那么让我们试一下把和数组相关的代码挪到它自己的类中。我们通过块(block)来配置cell(也可以通过委托(delegate)来设置，取决于你自己的情况和偏好)。</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>title:ArrayDataSource.m </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">@implementation</span> <span class="nc">ArrayDataSource</span>
-</span><span class="line">
-</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">itemAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">items</span><span class="p">[(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">];</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
-</span><span class="line"> <span class="nf">numberOfRowsInSection:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">section</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">items</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="n">UITableViewCell</span><span class="o">*</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
-</span><span class="line">        <span class="nf">cellForRowAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
-</span><span class="line">    <span class="kt">id</span> <span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">cellIdentifier</span>
-</span><span class="line">                                              <span class="nl">forIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
-</span><span class="line">    <span class="kt">id</span> <span class="n">item</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nl">itemAtIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
-</span><span class="line">    <span class="n">configureCellBlock</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="n">item</span><span class="p">);</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="k">@end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><figcaption><span>title:ArrayDataSource.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@implementation</span> <span class="nc">ArrayDataSource</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">itemAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">items</span><span class="p">[(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
+</span><span class='line'> <span class="nf">numberOfRowsInSection:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">section</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">items</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">UITableViewCell</span><span class="o">*</span><span class="p">)</span><span class="nf">tableView:</span><span class="p">(</span><span class="n">UITableView</span><span class="o">*</span><span class="p">)</span><span class="nv">tableView</span>
+</span><span class='line'>        <span class="nf">cellForRowAtIndexPath:</span><span class="p">(</span><span class="n">NSIndexPath</span><span class="o">*</span><span class="p">)</span><span class="nv">indexPath</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">id</span> <span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="n">tableView</span> <span class="nl">dequeueReusableCellWithIdentifier:</span><span class="n">cellIdentifier</span>
+</span><span class='line'>                                              <span class="nl">forIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">id</span> <span class="n">item</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nl">itemAtIndexPath:</span><span class="n">indexPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">configureCellBlock</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="n">item</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">cell</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>你可以创建这个对象的实例，把它作为表格视图的数据源来取代在你ViewController的那三个方法</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">configureCell</span><span class="p">)(</span><span class="n">PhotoCell</span><span class="o">*</span><span class="p">,</span> <span class="n">Photo</span><span class="o">*</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="n">PhotoCell</span><span class="o">*</span> <span class="n">cell</span><span class="p">,</span> <span class="n">Photo</span><span class="o">*</span> <span class="n">photo</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">   <span class="n">cell</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">photo</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line"><span class="n">photosArrayDataSource</span> <span class="o">=</span> <span class="p">[[</span><span class="n">ArrayDataSource</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithItems:</span><span class="n">photos</span>
-</span><span class="line">                                                <span class="nl">cellIdentifier:</span><span class="n">PhotoCellIdentifier</span>
-</span><span class="line">                                            <span class="nl">configureCellBlock:</span><span class="n">configureCell</span><span class="p">];</span>
-</span><span class="line"><span class="n">self</span><span class="p">.</span><span class="n">tableView</span><span class="p">.</span><span class="n">dataSource</span> <span class="o">=</span> <span class="n">photosArrayDataSource</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">configureCell</span><span class="p">)(</span><span class="n">PhotoCell</span><span class="o">*</span><span class="p">,</span> <span class="n">Photo</span><span class="o">*</span><span class="p">)</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="n">PhotoCell</span><span class="o">*</span> <span class="n">cell</span><span class="p">,</span> <span class="n">Photo</span><span class="o">*</span> <span class="n">photo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="n">cell</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">photo</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="n">photosArrayDataSource</span> <span class="o">=</span> <span class="p">[[</span><span class="n">ArrayDataSource</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithItems:</span><span class="n">photos</span>
+</span><span class='line'>                                                <span class="nl">cellIdentifier:</span><span class="n">PhotoCellIdentifier</span>
+</span><span class='line'>                                            <span class="nl">configureCellBlock:</span><span class="n">configureCell</span><span class="p">];</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">tableView</span><span class="p">.</span><span class="n">dataSource</span> <span class="o">=</span> <span class="n">photosArrayDataSource</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>现在你不用在考虑筹划索引路径(index path)在数组中的位置，每次你想要在表视图中展示一个数组的内容你都可以重用这部分代码。你还可以额外实现像<code>tableView:commitEditingStyle:forRowAtIndexPath: </code>这样的方法，在你的ViewController中共用这些代码。</p>
+
+<p>现在你不用在考虑筹划索引路径(index path)在数组中的位置，每次你想要在表视图中展示一个数组的内容你都可以重用这部分代码。你还可以额外实现像<code>tableView:commitEditingStyle:forRowAtIndexPath:</code>这样的方法，在你的ViewController中共用这些代码。</p>
 
 <p>美妙的是你可以单独的测试这个类而不用考虑重新在写。假如数据不是数组这个方法同样适用。</p>
 ]]></content>
@@ -211,7 +374,7 @@
     <updated>2013-11-11T10:49:00+08:00</updated>
     <id>http://youger.github.io/blog/2013/11/11/iosying-yong-beng-kui-ri-zhi-jie-mi</id>
     <content type="html"><![CDATA[<p>最近收到用户反馈说新版本词典存在闪退问题，和PM各种测试也没发现闪退，苹果后台也确实收集到一些crash的报告，借此机会打算手动去分析下已有的崩溃日志报告，打开这些<code>.crash</code>文
-件，满篇天书，Google了一下还是找到有不少关于分析崩溃报告的教程，参考RW<a href="http://www.raywenderlich.com/zh-hans/30818/ios应用崩溃日志揭秘">iOS应用崩溃日志揭秘</a>，
+件，满篇天书，Google了一下还是找到有不少关于分析崩溃报告的教程，参考RW<a href="http://www.raywenderlich.com/zh-hans/30818/ios%E5%BA%94%E7%94%A8%E5%B4%A9%E6%BA%83%E6%97%A5%E5%BF%97%E6%8F%AD%E7%A7%98">iOS应用崩溃日志揭秘</a>，
 教程。
 后来通过这篇<a href="http://blog.devtang.com/blog/2013/07/24/use-crashlytics/">博文</a>了解到<a href="http://try.crashlytics.com">crashlytics</a>,在线收集用
 户的crash log的工具。</p>
@@ -223,7 +386,7 @@
     <link href="http://youger.github.io/blog/2013/10/18/you-lai/"/>
     <updated>2013-10-18T14:06:00+08:00</updated>
     <id>http://youger.github.io/blog/2013/10/18/you-lai</id>
-    <content type="html"><![CDATA[<h1 id="hello-fser">Hello Fser。</h1>
+    <content type="html"><![CDATA[<h1>Hello Fser。</h1>
 
 <p><a href="http://beyondvincent.com/blog/2013/08/03/108-creating-a-github-blog-using-octopress/">参考</a></p>
 ]]></content>

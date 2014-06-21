@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>为Octopress添加Category — Fser</title>
+  <meta name="author" content="youger"/>
+
+  
+  <meta name="description" content="导航栏添加自定义category列表."/>
+  <meta name="keywords" content="custom octopress,octopress category"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  
+  <link rel="canonical" href="http://youger.github.io/blog/2014/06/20/octopress-tian-jia-zhong-wen-category"/>
+  <!--link href="/favicon.png" rel="icon"/-->
+  <link href="/favicon.png" rel="icon"/>
+  <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/stylesheets/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+  <link href="/atom.xml" rel="alternate" title="Fser" type="application/atom+xml"/>
+  <script src="//cdn.jsdelivr.net/jquery/1.11/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.min.js"><\/script>')</script>
+  
+  
+  
+
+  
+
+  
+
+</head>
+
+<body >
+  
+  <header role="banner" class="hidden">
+  <h1><a href="/">Fser</a></h1>
+
+
+  <h2>幽心如梦.</h2>
+
+
+</header>
+  
+  <nav class="navbar navbar-static-top" role="navigation"><div class="nav-collapse collapse">
+<ul class="nav subscription pull-right" data-subscription="rss">
+  <li><a href="/atom.xml" rel="alternate" data-type="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form class="navbar-search pull-right" action="https://218.189.25.132/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sites" value="youger.github.io" />
+    <input type="hidden" name="q" value="site:youger.github.io" />
+    <input class="search search-query" type="text" id="q" name="q"
+      placeholder="Search"
+       />
+  </fieldset>
+  
+</form>
+  
+</div>
+<ul class="nav main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/categories">Categories</a></li>
+  <li><a href="/blog/workspace">Workspace</a></li>
+</ul>
+
+</nav>
+  <div id="content" class="container">
+    <article class="hentry span10 offset1" role="article">
+  
+  <header>
+    
+      
+        
+          
+        
+      
+      
+      <h1 class="entry-title">为Octopress添加Category</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-06-20T18:29:46+08:00" data-updated="true">Jun 20<span>th</span>, 2014</time>
+      </p>
+    
+  </header>
+
+
+<div class="entry-content lettrine"><p>导航栏添加自定义category列表</p>
+
+<p>前两天参考别人在侧边栏加category列表的方法给自己的博客添加了category导航。</p>
+
+<h2>基本步骤</h2>
+
+<p><span class="label label-important">首先</span><span class=" hidden">:</span>在<code>plugins/</code>路径下添加<code>category_list_tag.rb</code>文件</p>
+
+<figure class='code'><figcaption><span> (category_list_tag.rb)</span> <a href='/downloads/code/category_list_tag.rb'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">module</span>  <span class="nn">Jekyll</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Tag</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
+</span><span class='line'>      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
+</span><span class='line'>        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">html</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="ss">Jekyll</span><span class="p">:</span><span class="ss">:CategoryListTag</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p><span class="label label-info">其次</span><span class=" hidden">：</span>jekyll的插件<code>category_generator.rb</code>默认在创建categories目录时是不存在<code>index.html</code>索引文件的，因为她无法知道你每次创建category的路径地址，所以我们只能手动在<code>source/blog/categories/</code>路径下创建<code>index.html</code>文件</p>
+
+<figure class='code'><figcaption><span>index.html</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>---
+</span><span class='line'>layout: page
+</span><span class='line'>title: Categories
+</span><span class='line'>footer: false
+</span><span class='line'>
+</span><span class='line'>---
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    ｛％ category_list ％｝<span class="c">&lt;!--此处是中文输入，不要直接复制--&gt;</span>
+</span><span class='line'>   <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><span class=" label label-success">最后</span><span class=" hidden">：</span>在<code>source/_includes/custom/navigation.html</code>中加如下代码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/categories&quot;</span><span class="nt">&gt;</span>Categories<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>现在就可以为博客归一下类了</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>---
+</span><span class='line'>layout: post
+</span><span class='line'>title: &quot;为Octopress添加Category&quot;
+</span><span class='line'>date: 2014-06-20 18:29:46 +0800
+</span><span class='line'>comments: true
+</span><span class='line'>categories: octopress
+</span><span class='line'>---
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h2></h2>
+
+<p><span class="label label-warning">Build Failed</span>关于第一次<code>rake generate</code> 遇到的
+<code>Liquid Exception: incompatible encoding regexp match (ASCII-8BIT regexp with UTF-8 string) in index.html</code>问题，原因是正则字符串以<code>ASCII-8BIT</code>被编译，只需在<code>category_list_tag.rb</code>文件头部加上如下声明，当Ruby在语法分析时，你代码中每一个字符(包括正则，字符串等等)都会被设定为<code>UTF-8</code>编码：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># encoding: utf-8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考:<br/>
+<a href="http://wangzz.github.io/blog/2014/04/28/custom-your-octopress-blog/">链接1</a> , <a href="http://codemacro.com/tags/octopress/">链接2</a> , <a href="http://stackoverflow.com/questions/9857443/ruby-regex-error-incompatible-encoding-regexp-match-ascii-8bit-regexp-with-utf">链接3</a></p>
+
+<h2></h2>
+
+<h1>关于中文category</h1>
+
+<p>上面的流程走完之后，于是顺手给一篇文章加了个中文名称的分类，WTF，文件路径都正确就是，索引文件也有，就是找不到。仔细观察url发现category的url没有被读取为<code>字符串</code>－<code>字符串</code>而是直接以实际的形式(即中文编码后的格式)链接过去，但实际public/blog/categories/下各个子分类都是以<code>字符串</code>－<code>字符串</code>的命名存储的，这也就是为什么找不到目录下的索引文件。知道原因，这样问题就好办了。首先我选择了最笨的办法就是找到那篇博文的<a href="http://weibo.com/foogry/profile?s=6cm7D0">主人</a>直接问人家，然后就没有然后了&hellip;&hellip;</p>
+
+<p>好吧只能靠自己了，url读取问题应该是出在正则表达式上，打开<code>category_list_tag.rb</code>文件，也找到正则这句</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好吧，大致没看懂，但它确实是把category的名字完全匹配到了，这里是不是有个汉字转拼音的插件就可以解决问题呢？Google一下你就知道了。还真有<a href="https://github.com/janx/ruby-pinyin">ruby-pinyin</a>，看起来好复杂。再看看还有别的筏子吗，打开<code>plugins/category_generator.rb</code>文件，看看它到底是肿么把汉字转成<code>字符串</code>－<code>字符串</code>格式的路径的，看到这句时眼前突现了日出东山的万丈光芒：</p>
+
+<figure class='code'><figcaption><span>start:111 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>self.write_category_index(File.join(dir, category.to_url), category)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>看样子<code>category.to_url</code>应该就是干这个活儿的，那么用它把<code>category_list_tag.rb</code>中的正则替换掉应该是能行，下面是修改后的样子：</p>
+
+<figure class='code'><figcaption><span>category_list_tag.rb </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1">#category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, &#39;-&#39;).gsub(/-{2,}/, &#39;-&#39;).downcase)  </span>
+</span><span class='line'><span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">to_url</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>新问题：codeblock没法使用<code>start:#</code> <code>mark:#,#-#</code></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">youger</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-06-20T18:29:46+08:00" data-updated="true">Jun 20<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2014/06/20/reactivecocoaxue-xi-1/" title="Previous Post: ReactiveCocoa学习1">&larr;<span class="hide-mobile">&nbsp;ReactiveCocoa学习1</span></a>
+        
+        
+      
+    </p>
+  </footer>
+	
+</article>
+
+  </div>
+  <footer role="contentinfo"><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fee5cd9bd4bd9ffb8cfee8f2d1eda69bb' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<a rel="license" href="/license" class="CC">
+  <img alt="Creative Commons License" src="/img/cc-by-nc-small.png">
+</a>
+
+<script src="/js/typo.js"></script>
+</footer>
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

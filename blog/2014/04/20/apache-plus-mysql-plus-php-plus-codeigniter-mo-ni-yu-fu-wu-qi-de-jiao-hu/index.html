@@ -104,20 +104,21 @@
   </header>
 
 
-<div class="entry-content lettrine"><h1 id="apachemysqlphpcodeigniter">利用Apache/MySQL/PHP/codeigniter搭建虚拟环境</h1>
+<div class="entry-content lettrine"><h1>利用Apache/MySQL/PHP/codeigniter搭建虚拟环境</h1>
 
-<h2 id="section">为什么</h2>
+<h2>为什么</h2>
 
 <p>最近接手一个项目，看demo算不上复杂，基本功能就是从服务器获取数据然后展示出来。以前做过类似的app，当时由于初次做这类前端和后端一块开发的项目，后端的进度直接影响了前端开发，导致留给我们这边开发和测试的时间都很紧，bug也肯定是层出不穷，最后勉强上线。</p>
 
-<h2 id="section-1">怎么做</h2>
+<h2>怎么做</h2>
 
 <p>这次为了避免上次出现的窘况，决定前端后端一块搞。这里的意思并不是自己开发一个后台，首先对于菜鸟来说不现实，其次这时间也不允我这么搞。这里只是搭建个能返回测试数据的服务器。首先和后端的定好数据格式以及所需的接口，然后就是解决怎么模拟与服务器的交互问题。一通google，大致有两种方案：</p>
 
 <ol>
-  <li>利用测试框架写测试用例</li>
-  <li>搭建自己到服务器，返回需要的json或者xml</li>
+<li>利用测试框架写测试用例</li>
+<li>搭建自己到服务器，返回需要的json或者xml</li>
 </ol>
+
 
 <p>最终选择Apache＋PHP＋MySQL。本以为可以傻瓜式直接装<a href="http://www.mamp.info/en/">MAMP</a>，结果安装到最后一步总是失败，试了各种方法<a href="http://forum.mamp.info/viewtopic.php?f=2&amp;t=86116&amp;p=104773&amp;hilit=mavericks#p104773">🔗</a>,<a href="http://www.gladdy.co.uk/blog/2013/06/16/mamp-pro-under-os-x-mavericks/">🔗</a>也没有解决问题，无意间看到这片<a href="http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/">博文</a>,简略记录一下。</p>
 
@@ -127,18 +128,19 @@
 
 <p>首先在终端中切换到<code>root</code>，避免因为权限问题使以下命令不能正常运行</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">sudo su -</span></code></pre></td></tr></table></div></figure></notextile></div>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo su -</span></code></pre></td></tr></table></div></figure>
 
-<h5 id="apache">启动Apache</h5>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">apachectl start</span></code></pre></td></tr></table></div></figure></notextile></div>
+<h5>启动Apache</h5>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apachectl start</span></code></pre></td></tr></table></div></figure>
+
 
 <p>打开<a href="http://localhost">http://localhost</a>测试 It works!</p>
 
-<h5 id="php">打开PHP</h5>
-
+<h5>打开PHP</h5>
 </div>
 
 
