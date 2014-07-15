@@ -4,7 +4,7 @@
   <title><![CDATA[Fser]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-07-14T10:08:33+08:00</updated>
+  <updated>2014-07-15T17:08:33+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C:const和static关键词]]></title>
+    <link href="http://youger.github.io/blog/2014/07/15/c-consthe-staticguan-jian-ci/"/>
+    <updated>2014-07-15T09:41:25+08:00</updated>
+    <id>http://youger.github.io/blog/2014/07/15/c-consthe-staticguan-jian-ci</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[自定义UINavigationBar出现的问题]]></title>

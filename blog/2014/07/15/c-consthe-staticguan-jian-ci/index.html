@@ -3,17 +3,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>自定义UINavigationBar出现的问题 — Fser</title>
+  <title>C:const和static关键词 — Fser</title>
   <meta name="author" content="youger"/>
 
   
-  <meta name="description" content="自定义UINavigationBar出现的问题"/>
+  <meta name="description" content="A hungry hunter."/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   
-  <link rel="canonical" href="http://youger.github.io/blog/2014/07/09/zi-ding-yi-uinavigationbarchu-xian-de-wen-ti"/>
+  <link rel="canonical" href="http://youger.github.io/blog/2014/07/15/c-consthe-staticguan-jian-ci"/>
   <!--link href="/favicon.png" rel="icon"/-->
   <link href="/favicon.png" rel="icon"/>
   <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -81,7 +81,7 @@
         
       
       
-      <h1 class="entry-title">自定义UINavigationBar出现的问题</h1>
+      <h1 class="entry-title">C:const和static关键词</h1>
     
     
       <p class="meta">
@@ -98,23 +98,13 @@
 
 
 
-<time datetime="2014-07-09T16:51:15+08:00" data-updated="true">Jul 9<span>th</span>, 2014</time>
+<time datetime="2014-07-15T09:41:25+08:00" data-updated="true">Jul 15<span>th</span>, 2014</time>
       </p>
     
   </header>
 
 
-<div class="entry-content lettrine"><p>多人协作做一个项目，由于不同的工程文件配置，自定义化的控件，不同的设计模式等等在合并代码的时候不可避免会出现各种各样的冲突。</p>
-
-<h2></h2>
-
-<p>近期就因为一个比较急项目和同事共同做一个项目，首先遇到的问题就是svn中工程文件冲突，后来借鉴<a href="http://limboy.me/tech/2014/03/23/huaban-app-redesign.html">花瓣客户端的开发模式</a>，每个人负责一个或多个模块，分别自建各自的工程，最后利用<a href="http://cocoapods.org">CocoaPods</a>串联在一起。主项目中Pods项目最终会编译成.a的库文件，而Pods中的资源文件被复制到目标目录，所以问题到此并没有结束。</p>
-
-<p>像Pods中调用<code>+nibWithNibName:bundle:</code>方法就会因为找不到nib文件崩溃（iOS6上），直接迁移的<code>Images.xcassets</code>资源文件pods库就找不到相应的图片(<a href="https://github.com/CocoaPods/CocoaPods/issues/1549">issues#1549</a>)。因为要兼容6和7，而适配6和7的方法又有很多种，如果主项目和子项目用的方法不一致也可能会导致UI错乱。</p>
-
-<h2></h2>
-
-<p>今天就遇到因为不同的适配方法带来的UI问题。主项目通过继承导航控制器（UINavigationController），自定义背景和<code>tintColor</code>实现基础控制器，通过设置<code>translucent</code>属性为NO实现根视图坐标和iOS6一致。而我在子项目利用<a href="http://www.bignerdranch.com/blog/designing-interfaces-ios-6-ios-7/">Auto Layout实现坐标的适配</a>。最终就出现了子项目中所有的UI布局都和预期不一致。关于<code>translucent</code>属性，假如设置为透明，导航控制器的rootViewController的视图布局起始坐标在UINavigationBar之下，反之，则从屏幕左上角起始。</p>
+<div class="entry-content lettrine">
 </div>
 
 
@@ -138,24 +128,16 @@
 
 
 
-<time datetime="2014-07-09T16:51:15+08:00" data-updated="true">Jul 9<span>th</span>, 2014</time>
+<time datetime="2014-07-15T09:41:25+08:00" data-updated="true">Jul 15<span>th</span>, 2014</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ios/'>iOS</a>
-  
-</span>
 
 
     </p>
     <p class="meta">
       
         
-          <a class="basic-alignment left" href="/blog/2014/06/20/octopress-tian-jia-zhong-wen-category/" title="Previous Post: 为Octopress添加Category">&larr;<span class="hide-mobile">&nbsp;为Octopress添加Category</span></a>
+          <a class="basic-alignment left" href="/blog/2014/07/09/zi-ding-yi-uinavigationbarchu-xian-de-wen-ti/" title="Previous Post: 自定义UINavigationBar出现的问题">&larr;<span class="hide-mobile">&nbsp;自定义UINavigationBar出现的问题</span></a>
         
-        
-          <a class="basic-alignment right" href="/blog/2014/07/15/c-consthe-staticguan-jian-ci/" title="Next Post: C:const和static关键词"><span class="hide-mobile">C:const和static关键词&nbsp;</span>&rarr;</a>
         
       
     </p>
@@ -192,8 +174,8 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://youger.github.io/blog/2014/07/09/zi-ding-yi-uinavigationbarchu-xian-de-wen-ti/';
-        var disqus_url = 'http://youger.github.io/blog/2014/07/09/zi-ding-yi-uinavigationbarchu-xian-de-wen-ti/';
+        var disqus_identifier = 'http://youger.github.io/blog/2014/07/15/c-consthe-staticguan-jian-ci/';
+        var disqus_url = 'http://youger.github.io/blog/2014/07/15/c-consthe-staticguan-jian-ci/';
         var disqus_script = 'embed.js';
       
     (function () {
