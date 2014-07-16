@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: C/C++ | Fser]]></title>
+  <link href="http://youger.github.io/blog/categories/c-slash-c-plus-plus/atom.xml" rel="self"/>
+  <link href="http://youger.github.io/"/>
+  <updated>2014-07-16T17:00:10+08:00</updated>
+  <id>http://youger.github.io/</id>
+  <author>
+    <name><![CDATA[youger]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[C:const和static关键词]]></title>
+    <link href="http://youger.github.io/blog/2014/07/15/c-consthe-staticguan-jian-ci/"/>
+    <updated>2014-07-15T09:41:25+08:00</updated>
+    <id>http://youger.github.io/blog/2014/07/15/c-consthe-staticguan-jian-ci</id>
+    <content type="html"><![CDATA[<p><span class="label label-info">简单比较</span></p>
+
+<p><code>const</code>修饰的变量值一旦设置就不能再改变。<br/>
+<code>static</code>变量的生命周期存在于程序的整个执行过程，变量值只在程序启动之前初始化一次。所有的static变量如果没有准确的被赋值也会被初始化，初始化的方式和时间都不确定。</p>
+
+<h2></h2>
+
+<p><span class="label label-info">const与pointers</span><br/>
+指针常量，str不能再被其他指针赋值，但是str所指值可以改变。例如，声明指针常量<code>char * const str = "hello world";</code><br/>
+<code>c
+//试图改变指针值，错误
+char * hello = "hello, universe";   //ERROR
+char * const str = "hello, world";  //ERROR
+str = hello;                        //ERROR
+//
+//指针所指的值可以被更改
+char * const str = strdup( "hello, world" );  //Correct
+str[ 0 ] = 'a';                               //Correct
+//
+</code><br/>
+声明char类型常量的指针<code>const char * str = "hello, world";</code>与上述正好相反，指针可以指向其他变量，但是不能改变指针所指的值。</p>
+
+<h2></h2>
+
+<p><span class="label label-info">static的两种含义</span></p>
+
+<ul>
+<li>在函数内部声明，static变量的被初始化一次，之后一直存在直至程序结束。例，与普通局部变量的区别</li>
+</ul>
+
+
+<p>``` c</p>
+
+<h1>include &lt;stdio.h></h1>
+
+<p>void foo( void ){</p>
+
+<pre><code>int x = 0;
+printf( "X - foo: %i\n", x );
+x++;
+</code></pre>
+
+<p>}
+void bar( void ){</p>
+
+<pre><code>static int x = 0;
+printf( "X - bar: %i\n", x );
+x++;
+</code></pre>
+
+<p>}
+int main( void ){</p>
+
+<pre><code>foo();
+foo();
+foo();
+bar();
+bar();
+bar();
+return 0;
+</code></pre>
+
+<p>}
+```<br/>
+输出结果：<br/>
+<blockquote><p><br/><br/>X &ndash; foo: 0<br/><br/>X &ndash; foo: 0<br/><br/>X &ndash; foo: 0<br/><br/>X &ndash; bar: 0<br/><br/>X &ndash; bar: 1<br/><br/>X &ndash; bar: 2<br/></p></blockquote></p>
+
+<ul>
+<li>在函数外部声明，创建文件内的(file scoped)全局私有变量，也就是说外部其他文件不能获得static修饰的全局变量的值。</li>
+</ul>
+
+
+<h2></h2>
+
+<p><span class="label label-info">C++中的static</span><br/>
+在C++中声明的static成员变量只能通过类调用，其值为所有该类的实例所共用<br/>
+```c++
+public class Test
+{</p>
+
+<pre><code>public static int test;
+</code></pre>
+
+<p>}
+Test myTestObject=new Test();
+myTestObject.test=2; //ERROR
+Test.test=2;         //Correct
+```</p>
+
+<h2></h2>
+
+<p>参考:</p>
+
+<ol>
+<li><a href="http://stackoverflow.com/questions/2216239/what-is-the-difference-between-a-static-and-const-variable">C: const and static keywords</a>,</li>
+<li><a href="http://www.noxeos.com/2011/07/29/c-const-static-keywords/">What is the difference between a static and const variable?</a>,</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/s1sb61xd%28VS.80%29.aspx">Static(C++)</a>,</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>
