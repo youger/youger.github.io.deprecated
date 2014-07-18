@@ -4,7 +4,7 @@
   <title><![CDATA[Fser]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-07-17T16:35:33+08:00</updated>
+  <updated>2014-07-18T17:29:51+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -38,8 +38,8 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">//试图改变指针值，错误</span>
-</span><span class='line'><span class="kt">char</span> <span class="o">*</span> <span class="n">hello</span> <span class="o">=</span> <span class="s">&quot;hello, universe&quot;</span><span class="p">;</span>   <span class="c1">//ERROR </span>
-</span><span class='line'><span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;hello, world&quot;</span><span class="p">;</span>  <span class="c1">//ERROR </span>
+</span><span class='line'><span class="kt">char</span> <span class="o">*</span> <span class="n">hello</span> <span class="o">=</span> <span class="s">&quot;hello, universe&quot;</span><span class="p">;</span>   <span class="c1">//ERROR</span>
+</span><span class='line'><span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;hello, world&quot;</span><span class="p">;</span>  <span class="c1">//ERROR</span>
 </span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="n">hello</span><span class="p">;</span>                        <span class="c1">//ERROR</span>
 </span><span class='line'><span class="c1">//</span>
 </span><span class='line'><span class="c1">//指针所指的值可以被更改</span>
@@ -86,19 +86,19 @@
 <span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
 </span><span class='line'><span class="kt">void</span> <span class="nf">foo</span><span class="p">(</span> <span class="kt">void</span> <span class="p">){</span>
-</span><span class='line'>  
+</span><span class='line'>
 </span><span class='line'>  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>  <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;X - foo: %i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="p">);</span>
 </span><span class='line'>  <span class="n">x</span><span class="o">++</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'><span class="kt">void</span> <span class="nf">bar</span><span class="p">(</span> <span class="kt">void</span> <span class="p">){</span>
-</span><span class='line'>  
+</span><span class='line'>
 </span><span class='line'>  <span class="k">static</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>  <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;X - bar: %i</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">x</span> <span class="p">);</span>
 </span><span class='line'>  <span class="n">x</span><span class="o">++</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">){</span>
-</span><span class='line'>  
+</span><span class='line'>
 </span><span class='line'>  <span class="n">foo</span><span class="p">();</span>
 </span><span class='line'>  <span class="n">foo</span><span class="p">();</span>
 </span><span class='line'>  <span class="n">foo</span><span class="p">();</span>
@@ -152,8 +152,8 @@
 <p>参考:</p>
 
 <ol>
-<li><a href="http://stackoverflow.com/questions/2216239/what-is-the-difference-between-a-static-and-const-variable">C: const and static keywords</a>,</li>
-<li><a href="http://www.noxeos.com/2011/07/29/c-const-static-keywords/">What is the difference between a static and const variable?</a>,</li>
+<li><a href="http://www.noxeos.com/2011/07/29/c-const-static-keywords/">C: const and static keywords</a>,</li>
+<li><a href="http://stackoverflow.com/questions/2216239/what-is-the-difference-between-a-static-and-const-variable">What is the difference between a static and const variable?</a>,</li>
 <li><a href="http://msdn.microsoft.com/en-us/library/s1sb61xd%28VS.80%29.aspx">Static(C++)</a>,</li>
 </ol>
 

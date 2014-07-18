@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C/C++ | Fser]]></title>
   <link href="http://youger.github.io/blog/categories/c-slash-c-plus-plus/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-07-17T16:35:33+08:00</updated>
+  <updated>2014-07-18T17:29:51+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -112,8 +112,8 @@ Test.test=2;         //Correct
 <p>参考:</p>
 
 <ol>
-<li><a href="http://stackoverflow.com/questions/2216239/what-is-the-difference-between-a-static-and-const-variable">C: const and static keywords</a>,</li>
-<li><a href="http://www.noxeos.com/2011/07/29/c-const-static-keywords/">What is the difference between a static and const variable?</a>,</li>
+<li><a href="http://www.noxeos.com/2011/07/29/c-const-static-keywords/">C: const and static keywords</a>,</li>
+<li><a href="http://stackoverflow.com/questions/2216239/what-is-the-difference-between-a-static-and-const-variable">What is the difference between a static and const variable?</a>,</li>
 <li><a href="http://msdn.microsoft.com/en-us/library/s1sb61xd%28VS.80%29.aspx">Static(C++)</a>,</li>
 </ol>
 
