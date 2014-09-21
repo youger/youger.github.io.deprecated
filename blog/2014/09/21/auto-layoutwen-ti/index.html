@@ -3,17 +3,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Category: 翻译 — Fser</title>
+  <title>auto layout问题 — Fser</title>
   <meta name="author" content="youger"/>
 
   
-  <meta name="description" content="Category: 翻译"/>
-  
+  <meta name="description" content="A hungry hunter."/>
+  <meta name="keywords" content="auto layout, size classes"/>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   
-  <link rel="canonical" href="http://youger.github.ioblog/categories/fan-yi"/>
+  <link rel="canonical" href="http://youger.github.io/blog/2014/09/21/auto-layoutwen-ti"/>
   <!--link href="/favicon.png" rel="icon"/-->
   <link href="/favicon.png" rel="icon"/>
   <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -37,7 +37,7 @@
 
 <body >
   
-  <header role="banner">
+  <header role="banner" class="hidden">
   <h1><a href="/">Fser</a></h1>
 
 
@@ -118,35 +118,85 @@
 
 </nav>
   <div id="content" class="container">
-    <article role="article">
+    <article class="hentry span10 offset1" role="article">
   
   <header>
-    <h1 class="entry-title">Category: 翻译</h1>
+    
+      
+        
+          
+        
+      
+      
+      <h1 class="entry-title">Auto Layout问题</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-09-21T22:07:17+08:00" data-updated="true">Sep 21<span>st</span>, 2014</time>
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content lettrine centering"><h2>记录苦逼的问题</h2>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/11/28/wei-shi-tu-kong-zhi-qi-jian-zhong/">[译]为视图控制器减重</a></h1>
-<time datetime="2013-11-28T12:10:00+08:00"><span class='month'>Nov</span> <span class='day'>28</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/fan-yi/'>翻译</a></span>
-</footer>
-
-
-</article>
-
+<p>使用auto layout + size classes 定义的tableHeaderView 在(wCompact,hRegular)的条件下不随tableView滚动。一直以为auto layout 哪里用的不对，无论怎么该auto layout都不起作用，后来改为(wAny,hAny)它就神奇的好了。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">youger</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-09-21T22:07:17+08:00" data-updated="true">Sep 21<span>st</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>iOS</a>
+  
+</span>
+
+
+    </p>
+    <p class="meta">
+      
+        
+          <a class="basic-alignment left" href="/blog/2014/07/15/c-consthe-staticguan-jian-ci/" title="Previous Post: C:const和static关键词">&larr;<span class="hide-mobile">&nbsp;C:const和static关键词</span></a>
+        
+        
+      
+    </p>
+  </footer>
 	
 	<section id="comments">
 		<h1>Comments</h1>
@@ -160,6 +210,8 @@
 	</section>
 	
 </article>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","weixin","renren","sqq","mail","twi","fbook","tieba","tqq","youdao","douban","bdxc","tqf","ibaidu","bdysc","bdhome","qq","hi","baidu","huaban","ff","ty","qingbiji","xg","sdo"],"bdPic":"","bdStyle":"1","bdSize":"16"},"slide":{"type":"slide","bdImg":"3","bdPos":"right","bdTop":"88"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
   </div>
   <footer role="contentinfo"><script type="text/javascript">
@@ -178,7 +230,10 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
       var disqus_shortname = 'youger';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://youger.github.io/blog/2014/09/21/auto-layoutwen-ti/';
+        var disqus_url = 'http://youger.github.io/blog/2014/09/21/auto-layoutwen-ti/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

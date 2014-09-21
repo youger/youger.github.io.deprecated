@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Fser]]></title>
   <link href="http://youger.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-07-31T22:10:38+08:00</updated>
+  <updated>2014-09-21T22:20:19+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[auto layout问题]]></title>
+    <link href="http://youger.github.io/blog/2014/09/21/auto-layoutwen-ti/"/>
+    <updated>2014-09-21T22:07:17+08:00</updated>
+    <id>http://youger.github.io/blog/2014/09/21/auto-layoutwen-ti</id>
+    <content type="html"><![CDATA[<h2>记录苦逼的问题</h2>
+
+<p>使用auto layout + size classes 定义的tableHeaderView 在(wCompact,hRegular)的条件下不随tableView滚动。一直以为auto layout 哪里用的不对，无论怎么该auto layout都不起作用，后来改为(wAny,hAny)它就神奇的好了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[自定义UINavigationBar出现的问题]]></title>
