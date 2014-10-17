@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Fser]]></title>
   <link href="http://youger.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-09-21T22:20:19+08:00</updated>
+  <updated>2014-10-18T00:39:31+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -21,6 +21,10 @@
     <content type="html"><![CDATA[<h2>记录苦逼的问题</h2>
 
 <p>使用auto layout + size classes 定义的tableHeaderView 在(wCompact,hRegular)的条件下不随tableView滚动。一直以为auto layout 哪里用的不对，无论怎么该auto layout都不起作用，后来改为(wAny,hAny)它就神奇的好了。</p>
+
+<h3>修改pch文件名字后xcode报错</h3>
+
+<p>工程能正常build,run但在pch中声明的文件xcode会提示找不到，看着很不爽，晚上查到的解决办法，先删除pch文件中的一行#import file，编译出错，然后再把删除的那行放回去，再编译就好了。</p>
 ]]></content>
   </entry>
   
