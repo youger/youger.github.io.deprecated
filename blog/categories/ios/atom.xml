@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Fser]]></title>
   <link href="http://youger.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-10-24T03:39:47+08:00</updated>
+  <updated>2014-10-24T03:42:19+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -47,7 +47,10 @@
 
 
 <p><code>objc
-[UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert) categories:nil];  
+[UIUserNotificationSettings settingsForTypes:    
+(UIRemoteNotificationTypeBadge|    
+UIRemoteNotificationTypeSound|    
+UIRemoteNotificationTypeAlert) categories:nil];    
 </code></p>
 
 <p>相关问题<a href="http://stackoverflow.com/questions/24216632/remote-notification-ios-8">Remote Notification iOS 8</a></p>
