@@ -4,7 +4,7 @@
   <title><![CDATA[Fser]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-10-24T03:33:20+08:00</updated>
+  <updated>2014-10-24T03:39:47+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -30,11 +30,21 @@
 
 <h3>关于iOS8注册远程通知取不到deviceToken问题</h3>
 
-<p>iOS8苹果更新了注册远程推送的接口，iOS8之前使用的<br/>
-<code>- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken</code><br/>
-<code>-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error</code>
-不能直接调用，需要用新api<br/>
-<code>[UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert) categories:nil];</code></p>
+<p>iOS8苹果更新了注册远程推送的接口，iOS8之前使用的</p>
+
+<figure class='code'><figcaption><span>objc</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- application: didRegisterForRemoteNotificationsWithDeviceToken:  
+</span><span class='line'>- application: didFailToRegisterForRemoteNotificationsWithError:</span></code></pre></td></tr></table></div></figure>
+
+
+<p>不能直接调用，需要用新api</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="n">UIUserNotificationSettings</span> <span class="nl">settingsForTypes:</span><span class="p">(</span><span class="n">UIRemoteNotificationTypeBadge</span><span class="o">|</span><span class="n">UIRemoteNotificationTypeSound</span><span class="o">|</span><span class="n">UIRemoteNotificationTypeAlert</span><span class="p">)</span> <span class="nl">categories:</span><span class="nb">nil</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>相关问题<a href="http://stackoverflow.com/questions/24216632/remote-notification-ios-8">Remote Notification iOS 8</a></p>
 ]]></content>
