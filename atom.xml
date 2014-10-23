@@ -4,7 +4,7 @@
   <title><![CDATA[Fser]]></title>
   <link href="http://youger.github.io/atom.xml" rel="self"/>
   <link href="http://youger.github.io/"/>
-  <updated>2014-10-18T00:39:31+08:00</updated>
+  <updated>2014-10-24T03:33:20+08:00</updated>
   <id>http://youger.github.io/</id>
   <author>
     <name><![CDATA[youger]]></name>
@@ -24,7 +24,19 @@
 
 <h3>修改pch文件名字后xcode报错</h3>
 
+<p>10.17</p>
+
 <p>工程能正常build,run但在pch中声明的文件xcode会提示找不到，看着很不爽，晚上查到的解决办法，先删除pch文件中的一行#import file，编译出错，然后再把删除的那行放回去，再编译就好了。</p>
+
+<h3>关于iOS8注册远程通知取不到deviceToken问题</h3>
+
+<p>iOS8苹果更新了注册远程推送的接口，iOS8之前使用的<br/>
+<code>- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken</code><br/>
+<code>-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error</code>
+不能直接调用，需要用新api<br/>
+<code>[UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound|UIRemoteNotificationTypeAlert) categories:nil];</code></p>
+
+<p>相关问题<a href="http://stackoverflow.com/questions/24216632/remote-notification-ios-8">Remote Notification iOS 8</a></p>
 ]]></content>
   </entry>
   
